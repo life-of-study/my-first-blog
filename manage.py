@@ -19,3 +19,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# command line 
+# $ python manage.py shell （Djangoのインタラクティブコンソールが起動）
