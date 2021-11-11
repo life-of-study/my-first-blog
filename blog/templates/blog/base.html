@@ -1,4 +1,4 @@
-{% load static %}   
+{% load static %}
 <html>
     <head>
         <title>Django Girls blog</title>
@@ -9,22 +9,16 @@
     </head>
     <body>
         <div class="page-header">
+            {% if user.is_authenticated %}  <!--ページをリクエストしているユーザーがログインしている場合にのみ、リンクがブラウザに送信される-->
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endif %}
             <h1><a href="/">Django Girls Blog</a></h1>
         </div>
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
-                {% block content %}           
-                    {% for post in posts %}
-                        <div class="post">
-                            <div class="date">
-                                {{ post.published_date }}
-                            </div>
-                            <h2><a href="">{{ post.title }}</a></h2>
-                            <p>{{ post.text|linebreaksbr }}</p>
-                        </div>
-                    {% endfor %}
-                {% endblock %}
+                    {% block content %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
