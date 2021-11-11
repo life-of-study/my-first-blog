@@ -119,5 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-#新しく自分で追加
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#静的ファイルの置き場所を複数ではなく、一つの場所に集める
+#その後、command line で　python manage.py collectstatic を記載後に、cssが反映された

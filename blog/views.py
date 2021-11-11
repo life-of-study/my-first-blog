@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post  # modelsの前にあるドットは カレントディレクトリ 、もしくは カレントアプリケーション 
-                          # views.pyと models.pyは、同じディレクトリに置いてあります。 だから、こんな風に.とファイル名だけを使って、簡単に記述することが出来る
+from django.shortcuts import render, get_object_or_404    # views.pyと models.pyは、同じディレクトリに置いてあります。 だから、こんな風に.とファイル名だけを使って、簡単に記述することが出来る
 
 # Create your views here.
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
+
 
 """render()の使い方
 return render(request, template_name, context=None, content_type=None, status=None, using=None)
